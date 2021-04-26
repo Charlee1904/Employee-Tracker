@@ -62,14 +62,63 @@ const start =()=>{
         });
      };
 
-
      const viewAllManager= () => {
         connection.query('SELECT * FROM employee',(err,res)=>{
             if(err)throw err;
             console.log(res);
             connection.end();
         });
-     };
+     }; 
+     
+     const addEmployee= () => {
+        
+        inquirer
+        .prompt([
+            {
+                name:"first_name",
+                type:"input",
+                message:"What is the employee's First_Name?",
+            },
+            {
+                name:"last_name",
+                type:"input",
+                message:"What is the employee's last_name?",
+            },
+            {
+                name:"role",
+                type:"input",
+                message:"What is the employee's role?",
+                choices:[
+                    "Sales Lead",
+                    "Salesperson",
+                    "Lead Engineer",
+                    "Software Engineer",
+                    "Account Manager",
+                    "Accountant",
+                    "Legal Team Lead",
+                ]
+            },
+            {
+                name:"manager",
+                type:"input",
+                message:"What is the employee's manager?",
+            },
+
+
+        ])
+        .then((answer)=>{
+            connection.query(
+                "INSERT INTO employee SET ?",
+            {
+                
+            }
+            )
+        })
+    };
+
+
+
+
 
 
 
