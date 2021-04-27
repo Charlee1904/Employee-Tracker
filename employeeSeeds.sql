@@ -1,26 +1,57 @@
-DROP DATABASE IF EXISTS ice_creamDB;
+drop table if exists employee_DB;
+create database employee_DB;
 
-CREATE DATABASE ice_creamDB;
+use employee_DB;
 
-USE ice_creamDB;
-
-CREATE TABLE products (
-  id INT NOT NULL AUTO_INCREMENT,
-  flavor VARCHAR(45) NULL,
-  price DECIMAL(10,2) NULL,
-  quantity INT NULL,
-  PRIMARY KEY (id)
+create table department (
+	id int auto_increment,
+    name varchar(30),
+    primary key(id)
 );
 
-INSERT INTO products (flavor, price, quantity)
-VALUES ("vanilla", 2.50, 100);
+create table role(
+	id int auto_increment,
+    title varchar(30),
+    salary decimal,
+    department_id int,
+    primary key(id)
+);
 
-INSERT INTO products (flavor, price, quantity)
-VALUES ("chocolate", 3.10, 120);
+create table employee (
+ id int auto_increment,
+ first_name varchar(30) not null,
+ last_name varchar(30),
+ role_id int,
+ manager_id int,
+ primary key(id)
+);
 
-INSERT INTO products (flavor, price, quantity)
-VALUES ("strawberry", 3.25, 75);
+insert into department
+(id,name)
+values (id,"Sales Lead");
 
--- ### Alternative way to insert more than one row
--- INSERT INTO products (flavor, price, quantity)
--- VALUES ("vanilla", 2.50, 100), ("chocolate", 3.10, 120), ("strawberry", 3.25, 75);
+
+insert into department
+(id,name)
+values (id,"Salesperson");
+
+insert into department
+(id,name)
+values (id,"Lead Engineer");
+
+insert into department
+(id,name)
+values (id,"Software Engineer");
+
+insert into department
+(id,name)
+values (id,"Account Manager");
+
+insert into department
+(id,name)
+values (id,"Accountant");
+
+
+insert into employee
+(id,first_name,last_name,role_id)
+values (id,"Charles","Lee",3);
